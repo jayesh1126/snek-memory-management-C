@@ -1,10 +1,12 @@
 # Snek Memory Management (C Runtime Exercise)
 
-A small C project implementing a basic dynamic object system similar to a simplified runtime for a dynamically typed language.
+This project explores **manual memory management in C** by building a simple object system called **Snek Objects**.
+
+It started as a tagged union-based runtime, and has now been extended with a **reference counting garbage collector**. The next step will be implementing **mark-and-sweep GC**.
 
 ## Overview
 
-This project explores manual memory management in C by building a simple "object system" called **Snek Objects**. Each object carries a type tag and a union of possible values, allowing it to represent multiple data types in a single structure.
+Snek Objects form a lightweight dynamic type system in C. Each object stores a type tag and a union of possible values, allowing it to represent multiple data types in a single structure.
 
 Supported types include:
 - Integers
@@ -17,6 +19,8 @@ Supported types include:
 
 - Tagged union-based object system
 - Heap-allocated objects using `malloc` / `calloc`
+- Reference counting garbage collection (automatic cleanup on refcount = 0)
+- Container-aware ownership (Vectors and Arrays manage internal references safely)
 - String duplication with proper null-termination handling
 - Vector3 support with recursive operations
 - Dynamic arrays with indexed access
@@ -26,15 +30,14 @@ Supported types include:
 
 ## What I Learned
 
-- Manual memory allocation and ownership in C
-- Handling strings safely with `malloc`, `strcpy`, and `strlen`
-- Designing tagged unions for polymorphism
-- Implementing recursive operations on composite types
-- Building simple runtime-like behaviour in a low-level language
+- Manual memory management in C
+- How reference counting GC works internally
+- Ownership models in composite data structures
+- Recursive cleanup in container types
+- Designing a simple runtime-like object system
 
 ## Build
 
-Compile with GCC:
-
 ```bash
 gcc main.c snekobject.c -o app
+./app
